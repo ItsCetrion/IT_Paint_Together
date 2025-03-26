@@ -40,7 +40,7 @@ function generateUniqueId() {
 }
 
 // ws = new WebSocket('ws://localhost:4000');
-ws = new WebSocket('ws://my-websocket-service.onrender.com');
+ws = new WebSocket('wss://my-websocket-service.onrender.com');
 
 ws.onopen = () => {
   console.log('Подключено к серверу');
