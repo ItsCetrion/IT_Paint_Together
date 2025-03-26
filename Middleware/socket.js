@@ -1,7 +1,7 @@
 import { WebSocketServer } from "ws";
 import RoomService from "../Service/RoomService.js";
 
-const wss = new WebSocketServer({port: 4000, host: "192.168.19.130"});
+const wss = new WebSocketServer({port: 4000, host: "0.0.0.0"});
 
 wss.on('connection', (ws) => {
 

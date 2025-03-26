@@ -40,7 +40,7 @@ function generateUniqueId() {
 }
 
 // ws = new WebSocket('ws://localhost:4000');
-ws = new WebSocket('ws://192.168.19.130:4000');
+ws = new WebSocket('ws://0.0.0.0:4000');
 
 ws.onopen = () => {
   console.log('Подключено к серверу');
