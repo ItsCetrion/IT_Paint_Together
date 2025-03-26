@@ -1,0 +1,73 @@
+main {
+    display: flex;
+    flex:1;
+    justify-content: center;
+    align-items: center;
+    background-image: url(/wwwroot/images/row-of-colorful-pencils-vector-illustration-png_225283.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.form-entry {
+    flex-direction: column;
+    background-color: aqua;
+    width: 30%;
+    height: 250px;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    border: 2px solid grey;
+}
+
+.form-entry * {
+    font-size: 18px;
+    border-radius: 9px;
+    border: none;
+    border: 1.5px solid grey;
+    width: 90%;
+    height: 30px;
+    transition: display 0.5s ease ;
+}
+
+.form-entry button {
+    background-color: aquamarine;
+}
+
+.form-entry button:hover {
+    background-color: lightgreen;
+    cursor: pointer;
+}
+
+.form-create-room {
+    flex-direction: column;
+    background-color: aqua;
+    width: 30%;
+    height: 250px;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    border: 2px solid grey;
+    transition: display 0.5s ease ;
+}
+
+.form-create-room * {
+    font-size: 18px;
+    border-radius: 9px;
+    border: none;
+    border: 1.5px solid grey;
+    width: 90%;
+    height: 30px;
+}
+
+.form-create-room button {
+    background-color: aquamarine;
+}
+
+.form-create-room button:hover {
+    background-color: lightgreen;
+    cursor: pointer;
+}
+

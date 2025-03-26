@@ -1,0 +1,21 @@
+footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    border-top: 2px solid grey;
+}
+
+footer  p {
+    margin: 0;
+    padding: 10px;
+}
+
+ul li {
+    list-style-type: none;
+    padding: 5px;
+}
+
+ul li a {
+    text-decoration: none;
+}

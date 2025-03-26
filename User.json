@@ -1,0 +1,13 @@
+{
+    "Users":
+    [
+        {
+            "login":"Cetrion",
+            "password":123
+        },
+        {
+            "login":"Cetrion1",
+            "password":123
+        }
+    ]
+}

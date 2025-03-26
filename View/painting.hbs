@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Рисование</title>
+    <link rel="stylesheet" href="/wwwroot/css/painting.css">
+</head>
+<body>
+    <div class="container-div">  
+        <div class="canvas-container">
+            <canvas></canvas>
+        </div>
+        <div class="panel">
+            <input type="color" id="color">
+            <button class="clear">Clear</button>
+            <select id="lineWidth">
+                <option value="1">1px</option>
+                <option value="2">2px</option>
+                <option value="3">3px</option>
+                <option value="4">4px</option>
+                <option value="5">5px</option>
+            </select>
+        </div>
+    </div>
+
+    <script>
+        const room = {{{room}}}
+    </script>
+    <script src="/wwwroot//js/painting.js"></script>
+</body>
+</html>

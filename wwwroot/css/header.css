@@ -1,0 +1,32 @@
+header {
+    display: flex;
+    flex-direction: row;
+    background-color: bisque;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-style: oblique;
+    margin-left: 10px;
+}
+
+    .list {
+    display: flex;
+    flex-direction: row;
+    margin-right: 10px;
+}
+
+.list li{
+    list-style-type: none;
+    margin: 5px;
+}   
+
+.list li a{
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.list li a:hover{
+    color: rgb(170, 189, 141)
+}
