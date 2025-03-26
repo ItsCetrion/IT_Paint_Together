@@ -89,4 +89,4 @@ app.get("/painting", (request, response) => {
     })
 })
 
-app.listen(3000, "192.168.19.130", () => { console.log("Сервер запущен на http://0.0.0.0:3000")})
+app.listen(3000, "0.0.0.0", () => { console.log("Сервер запущен на http://0.0.0.0:3000")})
