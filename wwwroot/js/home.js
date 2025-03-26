@@ -29,7 +29,7 @@ formCreateRoom.addEventListener("submit", async function(event) {
     if(await CreateRoom(Room)){
         const roomString = encodeURIComponent(JSON.stringify(Room));
         // window.location.href = `http://localhost:3000/painting?room=${roomString}`
-        window.location.href = `http://0.0.0.0:3000/painting?room=${roomString}`
+        window.location.href = `https://it-paint-together.onrender.com/painting?room=${roomString}`
     };
 })
 
@@ -41,5 +41,5 @@ formEntry.addEventListener("submit", function(event) {
     }
     const roomString = encodeURIComponent(JSON.stringify(Room));
     // window.location.href = `http://localhost:3000/painting?room=${roomString}`
-    window.location.href = `http://0.0.0.0:3000/painting?room=${roomString}`
+    window.location.href = `https://it-paint-together.onrender.com/painting?room=${roomString}`
 })

@@ -40,7 +40,7 @@ function generateUniqueId() {
 }
 
 // ws = new WebSocket('ws://localhost:4000');
-ws = new WebSocket('ws://0.0.0.0:4000');
+ws = new WebSocket('ws://my-websocket-service.onrender.com');
 
 ws.onopen = () => {
   console.log('Подключено к серверу');
@@ -74,7 +74,7 @@ ws.onmessage = (event) => {
   else if (data.type == "ErrorRoom"){
     alert(data.message);
     // window.location.href = `http://localhost:3000/home`;
-    window.location.href = "http://0.0.0.0:3000/home";
+    window.location.href = "https://it-paint-together.onrender.com/home";
   }
   else if (data.type == "draw"){
     const { x, y, color, lineWidth } = data;
