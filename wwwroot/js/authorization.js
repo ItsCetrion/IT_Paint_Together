@@ -12,7 +12,7 @@ document.querySelector(".form").addEventListener("submit", async function(event)
 function redirection(isValid) {
     if (isValid) {
         // window.location.href = "http://localhost:3000/home";
-        window.location.href = "http://192.168.19.130:3000/home";
+        window.location.href = "http://0.0.0.0:3000/home";
     }
     else {
         notification()

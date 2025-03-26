@@ -74,7 +74,7 @@ ws.onmessage = (event) => {
   else if (data.type == "ErrorRoom"){
     alert(data.message);
     // window.location.href = `http://localhost:3000/home`;
-    window.location.href = "http://192.168.19.130:3000/home";
+    window.location.href = "http://0.0.0.0:3000/home";
   }
   else if (data.type == "draw"){
     const { x, y, color, lineWidth } = data;
