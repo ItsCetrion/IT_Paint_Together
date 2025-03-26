@@ -46,7 +46,7 @@ function GetRooms(){
 }
 
 function addUser(rooms, Room, UserWS){
-    const flag = true;
+    let flag = true;
     if (rooms[Room.NameRoom]){
         const userExists = rooms[Room.NameRoom].UserAndWs.some(user => user.Ws === UserWS);
         if(!userExists){
