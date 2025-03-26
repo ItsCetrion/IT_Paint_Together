@@ -1,7 +1,7 @@
 
 import fs from "fs";
 import { v4 as uuidv4 } from 'uuid';
-const roomFilePath = '/home/evgeni/IT/Lab8/Room.json'
+// const roomFilePath = '/home/evgeni/IT/Lab8/Room.json'
 export default {
     getRoom: function(NameRoom){
 
@@ -41,7 +41,7 @@ export default {
 };
 
 function GetRooms(){
-    const data = fs.readFileSync(roomFilePath, 'utf8');
+    const data = fs.readFileSync("Room.json", 'utf8');
     return JSON.parse(data);
 }
 
@@ -85,7 +85,7 @@ function AddRoom(allRooms, InfoRoom){
 
 function WriteJson(rooms){
     try {
-        fs.writeFileSync(roomFilePath, JSON.stringify(rooms, null, 2));
+        fs.writeFileSync("Room.json", JSON.stringify(rooms, null, 2));
     } catch (err) {
         console.error('Ошибка при записи файла:', err);
     }
