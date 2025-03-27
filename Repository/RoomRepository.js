@@ -9,19 +9,15 @@ export default {
     },
     CreateRoom: function(InfoRoom){
         let rooms = GetRooms();
-        console.log(`После чтения из файла:\n${JSON.stringify(rooms)}\n`)
         const flag = AddRoom(rooms, InfoRoom);
         if (flag){
-            console.log("Начиначется запись в Json Файл");
             WriteJson(rooms);
         }
     },
     addUserInRoom: function(UserWS, Room){
         let rooms = GetRooms();
-        console.log(`После чтения из файла:\n${JSON.stringify(rooms)}\n`)
         const flag = addUser(rooms, Room, UserWS);
         if (flag){
-            console.log("Начиначется запись в Json Файл");
             WriteJson(rooms);
             const room = rooms[Room.NameRoom];
             return room;
@@ -99,7 +95,6 @@ function AddRoom(allRooms, InfoRoom){
 function WriteJson(rooms){
     try {
         fs.writeFileSync(roomFilePath, JSON.stringify(rooms, null, 2));
-        console.log("Успешно записал в Json!")
     } catch (err) {
         console.error('Ошибка при записи файла:', err);
     }
