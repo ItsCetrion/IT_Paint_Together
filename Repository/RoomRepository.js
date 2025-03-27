@@ -35,7 +35,7 @@ export default {
             WriteJson(rooms);
         }
         else{
-            print("Смысл удалять, его там и нет")
+            console.log("Смысл удалять, его там и нет")
         }
     },
     ClearCanvas: function(NameRoom){
