@@ -8,7 +8,6 @@ import { dirname } from "path";
 import { request } from "http";
 
 const jsonParser = express.json();
-const urlencoded = express.urlencoded();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -75,6 +74,43 @@ app.post("/createRoom", jsonParser, (request, response) => {
     response.sendStatus(200);
 })
 
+
+app.post("/addUserInRoom", jsonParser, (request, response) => {
+    const data = request.body;
+    if(!data){
+        return response.sendStatus(404);
+    }
+    const room = roomService.addUserInRoom(data.ws, data.msg);
+    response.json({data: room});
+})
+
+app.post("/UpdateCanvasState", jsonParser, (request, response) => {
+    const msg = request.body;
+    if(!msg){
+        return response.sendStatus(404);
+    }
+    roomService.UpdateCanvasState(msg);
+    response.sendStatus(200);
+})
+
+app.post("/ClearCanvas", jsonParser, (request, response) => {
+    const data = request.body;
+    if(!data){
+        return response.sendStatus(404);
+    }
+    roomService.ClearCanvas(data.NameRoom);
+    response.sendStatus(200);
+})
+
+app.post("/RemoveUserFromRoom", jsonParser, (request, response) => {
+    const ws = request.body;
+    if(!ws){
+        return response.sendStatus(404);
+    }
+    roomService.RemoveUserFromRoom(ws);
+    response.sendStatus(200);
+})
+
 app.get("/painting", (request, response) => {
     const roomString = request.query.room;
     let room;
@@ -90,3 +126,4 @@ app.get("/painting", (request, response) => {
 })
 
 app.listen(3000, "0.0.0.0", () => { console.log("Сервер запущен на http://0.0.0.0:3000")})
+// app.listen(3000, () => { console.log("Сервер запущен на порту 3000")})

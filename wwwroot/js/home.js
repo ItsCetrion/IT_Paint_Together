@@ -3,13 +3,12 @@ let formCreateRoom = document.querySelector(".form-create-room");
 const btnCreateRoom = document.querySelector(".create-room");
 const btnBack = document.querySelector(".Back");
 
-ws = getWebSocket();
-
 swapVisible(formEntry, formCreateRoom);
 
 function swapVisible(ObjectVisible, ObjectInVisible){
     ObjectInVisible.style.display = "none";
     ObjectVisible.style.display = "flex";
+    console.log("произошел свап");
 }
 
 btnCreateRoom.addEventListener("click", () => {

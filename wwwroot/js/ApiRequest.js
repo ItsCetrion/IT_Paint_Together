@@ -12,7 +12,6 @@ async function Login(Data){
     const data = await response.json();
     return data.isValid;
 }
-
 async function CreateRoom(Room){
     const response = await fetch("/createRoom", {
         method: "POST",
@@ -20,7 +19,7 @@ async function CreateRoom(Room){
             "Content-Type": "application/json",
         },
         body: JSON.stringify(Room)
-    })
+    });
     if(!response.ok){
         throw new Error('Ошибка сети: ' + response.status);
     }

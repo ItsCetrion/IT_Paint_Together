@@ -1,7 +1,8 @@
 
 import fs from "fs";
 import { v4 as uuidv4 } from 'uuid';
-// const roomFilePath = '/home/evgeni/IT/Lab8/Room.json'
+const roomFilePath = '/home/evgeni/Документы/GitHub/IT_Paint_Together/Room.json'
+// const roomFilePath = "Room.json";
 export default {
     getRoom: function(NameRoom){
 
@@ -52,13 +53,13 @@ export default {
 };
 
 function GetRooms(){
-    const data = fs.readFileSync("Room.json", 'utf8');
+    const data = fs.readFileSync(roomFilePath, 'utf8');
     return JSON.parse(data);
 }
 
-function addUser(rooms, Room, UserWS){
+function addUser(rooms, Room, ws){
     if (rooms[Room.NameRoom]){
-        const userExists = rooms[Room.NameRoom].UserAndWs.some(user => user.Ws === UserWS);
+        const userExists = rooms[Room.NameRoom].UserAndWs.some(user => user.id === ws.id);
         if(!userExists){
             const userId = uuidv4();
             rooms[Room.NameRoom].UserAndWs.push({
@@ -97,9 +98,10 @@ function AddRoom(allRooms, InfoRoom){
 
 function WriteJson(rooms){
     try {
-        fs.writeFileSync("Room.json", JSON.stringify(rooms, null, 2));
+        fs.writeFileSync(roomFilePath, JSON.stringify(rooms, null, 2));
         console.log("Успешно записал в Json!")
     } catch (err) {
         console.error('Ошибка при записи файла:', err);
     }
 }
+
