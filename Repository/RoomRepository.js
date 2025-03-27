@@ -9,14 +9,18 @@ export default {
     CreateRoom: function(InfoRoom){
         let rooms = GetRooms();
         console.log(`После чтения из файла:\n${rooms}\n`)
-        rooms = AddRoom(rooms, InfoRoom);
-        console.log(`Добавил в локальную переменную rooms:\n${rooms}\n`)
-        WriteJson(rooms);
+        const flag = AddRoom(rooms, InfoRoom);
+        if (flag){
+            console.log("Начиначется запись в Json Файл");
+            WriteJson(rooms);
+        }
     },
     addUserInRoom: function(UserWS, Room){
         let rooms = GetRooms();
+        console.log(`После чтения из файла:\n${rooms}\n`)
         const flag = addUser(rooms, Room, UserWS);
         if (flag){
+            console.log("Начиначется запись в Json Файл");
             WriteJson(rooms);
             const room = rooms[Room.NameRoom];
             return room;
@@ -53,7 +57,6 @@ function GetRooms(){
 }
 
 function addUser(rooms, Room, UserWS){
-    let flag = true;
     if (rooms[Room.NameRoom]){
         const userExists = rooms[Room.NameRoom].UserAndWs.some(user => user.Ws === UserWS);
         if(!userExists){
@@ -63,17 +66,17 @@ function addUser(rooms, Room, UserWS){
                 UserName: Room.UserName, 
             })
             console.log(`Пользователь "${Room.UserName}" добавлен в комнату "${Room.NameRoom}".`);
+            return true
         }
         else{
-            flag = false;
             console.log(`Пользователь "${Room.UserName}" уже в комнате "${Room.NameRoom}".`);
+            return false;
         }
     }
     else{
-        flag = false
         console.log(`Комната "${Room.NameRoom}" не найдена.`);
+        return false
     }
-    return flag
 }
 
 function AddRoom(allRooms, InfoRoom){
@@ -83,11 +86,13 @@ function AddRoom(allRooms, InfoRoom){
             CanvasState: {},
             UserAndWs: []
         }
+        console.log(`Команта "${InfoRoom.NameRoom} успешно добавлена в rooms"`);
+        return true;
     }
     else{
         console.log(`Комната с именем "${InfoRoom.NameRoom}" уже существует.`);
+        return false
     }
-    return allRooms
 }
 
 function WriteJson(rooms){
