@@ -8,7 +8,9 @@ export default {
     },
     CreateRoom: function(InfoRoom){
         let rooms = GetRooms();
+        console.log(`После чтения из файла:\n${rooms}\n`)
         rooms = AddRoom(rooms, InfoRoom);
+        console.log(`Добавил в локальную переменную rooms:\n${rooms}\n`)
         WriteJson(rooms);
     },
     addUserInRoom: function(UserWS, Room){
@@ -91,6 +93,7 @@ function AddRoom(allRooms, InfoRoom){
 function WriteJson(rooms){
     try {
         fs.writeFileSync("Room.json", JSON.stringify(rooms, null, 2));
+        console.log("Успешно записал в Json!")
     } catch (err) {
         console.error('Ошибка при записи файла:', err);
     }
