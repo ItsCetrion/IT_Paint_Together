@@ -1,8 +1,8 @@
 
 import fs from "fs";
 import { v4 as uuidv4 } from 'uuid';
-const roomFilePath = '/home/evgeni/Документы/GitHub/IT_Paint_Together/Room.json'
-// const roomFilePath = "Room.json";
+// const roomFilePath = '/home/evgeni/Документы/GitHub/IT_Paint_Together/Room.json'
+const roomFilePath = "Room.json";
 export default {
     getRoom: function(NameRoom){
 
