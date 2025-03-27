@@ -8,7 +8,7 @@ export default {
     },
     CreateRoom: function(InfoRoom){
         let rooms = GetRooms();
-        console.log(`После чтения из файла:\n${rooms}\n`)
+        console.log(`После чтения из файла:\n${JSON.stringify(rooms)}\n`)
         const flag = AddRoom(rooms, InfoRoom);
         if (flag){
             console.log("Начиначется запись в Json Файл");
@@ -17,7 +17,7 @@ export default {
     },
     addUserInRoom: function(UserWS, Room){
         let rooms = GetRooms();
-        console.log(`После чтения из файла:\n${rooms}\n`)
+        console.log(`После чтения из файла:\n${JSON.stringify(rooms)}\n`)
         const flag = addUser(rooms, Room, UserWS);
         if (flag){
             console.log("Начиначется запись в Json Файл");
