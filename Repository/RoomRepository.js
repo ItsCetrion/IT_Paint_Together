@@ -27,11 +27,16 @@ export default {
     },
     RemoveUserFromRoom: function(ws){
         let rooms = GetRooms();
-        const index = rooms[ws.NameRoom].UserAndWs.findIndex(user => user.id === ws.id);
-        if (index !== -1){
-            rooms[ws.NameRoom].UserAndWs.splice(index, 1);
+        if (rooms[ws.NameRoom]){
+            const index = rooms[ws.NameRoom].UserAndWs.findIndex(user => user.id === ws.id);
+            if (index !== -1){
+                rooms[ws.NameRoom].UserAndWs.splice(index, 1);
+            }
+            WriteJson(rooms);
         }
-        WriteJson(rooms);
+        else{
+            print("Смысл удалять, его там и нет")
+        }
     },
     ClearCanvas: function(NameRoom){
         let rooms = GetRooms();
