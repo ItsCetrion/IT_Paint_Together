@@ -17,6 +17,7 @@ wss.on('connection', (ws) => {
                 const Room  = await api.addUserInRoom(ws, msg);
                 if (Room !== undefined) {
                     ws.NameRoom = msg.NameRoom;
+                    ws.UserName = msg.UserName;
                     let mas = Room.UserAndWs;
                     ws.id = mas[mas.length - 1].id;
                     ws.send(JSON.stringify({ type: 'entryRoom', InfoRoom: Room , NameRoom: msg.NameRoom}));
@@ -43,6 +44,7 @@ wss.on('connection', (ws) => {
             }
             else if (msg.type == "cursor"){
                 const NameRoom = msg.NameRoom;
+                msg.UserName = ws.UserName;
                 if(NameRoom){
                     wss.clients.forEach(client => {
                         if (client !== ws && client.readyState == client.OPEN && client.NameRoom == NameRoom){

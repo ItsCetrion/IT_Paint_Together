@@ -112,7 +112,7 @@ ws.onmessage = (event) => {
     // Создаем или получаем элемент для имени пользователя
     const nameElement = document.getElementById(`name-${data.id}`) || document.createElement('div');
     nameElement.id = `name-${data.id}`;
-    nameElement.textContent = room.UserName;
+    nameElement.textContent = data.UserName;
     nameElement.style.position = 'absolute';
     nameElement.style.left = `${data.x}px`;
     nameElement.style.top = `${data.y - 20}px`;
