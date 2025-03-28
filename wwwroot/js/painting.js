@@ -68,7 +68,7 @@ ws.onmessage = (event) => {
     }
     ws.id = generateUniqueId();
   }
-  if (data.type == "clear"){
+  else if (data.type == "clear"){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
   else if (data.type == "ErrorRoom"){
@@ -95,16 +95,39 @@ ws.onmessage = (event) => {
     const cursorElement = document.getElementById(`cursor-${data.id}`) || document.createElement('div');
     cursorElement.id = `cursor-${data.id}`;
     cursorElement.style.position = 'absolute';
-    cursorElement.style.width = '10px'; // Ширина курсора
-    cursorElement.style.height = '10px'; // Высота курсора
-    cursorElement.style.backgroundColor = 'red'; // Цвет курсора
-    cursorElement.style.borderRadius = '50%'; // Круглая форма
-    cursorElement.style.left = `${data.x}px`;
-    cursorElement.style.top = `${data.y}px`;
+    cursorElement.style.width = '10px';
+    cursorElement.style.height = '10px';
+    cursorElement.style.backgroundColor = 'red';
+    cursorElement.style.borderRadius = '50%';
 
+    // Устанавливаем позицию курсора, смещая его на половину ширины и высоты
+    cursorElement.style.left = `${data.x - 5}px`; // 5 = 10px / 2
+    cursorElement.style.top = `${data.y - 5}px`; // 5 = 10px / 2
+
+    // Добавляем курсор в документ, если его еще нет
     if (!document.body.contains(cursorElement)) {
         document.body.appendChild(cursorElement);
     }
+
+    // Создаем или получаем элемент для имени пользователя
+    const nameElement = document.getElementById(`name-${data.id}`) || document.createElement('div');
+    nameElement.id = `name-${data.id}`;
+    nameElement.textContent = room.UserName;
+    nameElement.style.position = 'absolute';
+    nameElement.style.left = `${data.x}px`;
+    nameElement.style.top = `${data.y - 20}px`;
+    nameElement.style.color = 'black';
+    nameElement.style.fontSize = '12px';
+    nameElement.style.pointerEvents = 'none';
+
+    // Добавляем имя пользователя в документ, если его еще нет
+    if (!document.body.contains(nameElement)) {
+        document.body.appendChild(nameElement);
+    }
+  }
+  else if (data.type == "UserDisconnect"){
+    const idCursor = `cursor-${data.userId}`
+    document.getElementById(idCursor).remove();
   }
 }
 
@@ -184,6 +207,17 @@ canvas.addEventListener('mouseup', () => {
 canvas.addEventListener('mouseout', () => {
   isDrawing = false;
   ctx.beginPath();
+});
+
+window.addEventListener('beforeunload', () => {
+  const disconnectMessage = {
+    type: "UserDisconnect",
+    NameRoom: sessionStorage.getItem("NameRoom"),
+    userId: ws.id
+  };
+  if (ws.readyState === WebSocket.OPEN) {
+    ws.send(JSON.stringify(disconnectMessage));
+  }
 });
 
 ws.onclose = () => {

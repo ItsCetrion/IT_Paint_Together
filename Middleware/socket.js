@@ -14,7 +14,6 @@ wss.on('connection', (ws) => {
         try {
             const msg = JSON.parse(message);
             if (msg.type == "joinRoom"){
-                // const Room = RoomService.addUserInRoom(ws, msg)
                 const Room  = await api.addUserInRoom(ws, msg);
                 if (Room !== undefined) {
                     ws.NameRoom = msg.NameRoom;
@@ -31,7 +30,6 @@ wss.on('connection', (ws) => {
             else if (msg.type == "draw"){
                 const NameRoom = msg.NameRoom;
                 if(NameRoom){
-                    // RoomService.UpdateCanvasState(msg)
                     await api.UpdateCanvasState(msg);
                     wss.clients.forEach(client => {
                         if (client !== ws && client.readyState == client.OPEN && client.NameRoom == NameRoom){
@@ -55,8 +53,17 @@ wss.on('connection', (ws) => {
             }
             else if (msg.type == "clear"){
                 const NameRoom = msg.NameRoom;
-                // RoomService.ClearCanvas(NameRoom);
                 await api.ClearCanvas(NameRoom);
+                if(NameRoom){
+                    wss.clients.forEach(client => {
+                        if (client !== ws && client.readyState == client.OPEN && client.NameRoom == NameRoom){
+                            client.send(JSON.stringify(msg));
+                        }
+                    })
+                }
+            }
+            else if (msg.type == "UserDisconnect"){
+                const NameRoom = msg.NameRoom;
                 if(NameRoom){
                     wss.clients.forEach(client => {
                         if (client !== ws && client.readyState == client.OPEN && client.NameRoom == NameRoom){
@@ -74,7 +81,6 @@ wss.on('connection', (ws) => {
     });     
     ws.on("close", async () => {
         console.log(`Клиент отключился!`);
-        // RoomService.RemoveUserFromRoom(ws);
         await api.RemoveUserFromRoom(ws);
     });
 });
